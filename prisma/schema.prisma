@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  isAdmin   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dailyLogs DailyLog[]
+}
+
+model DailyLog {
+  id               String   @id @default(uuid())
+  user             User     @relation(fields: [userId], references: [id])
+  userId           String
+  date             DateTime
+  personalGrowth   Boolean
+  physicalActivity Boolean
+  waterIntake      Boolean
+  dailyTask        Boolean
+  journal          String?  // private
+  prayerMeditation Boolean
+  weeklyChallenge  Boolean
+  submittedAt      DateTime @default(now())
+
+  @@unique([userId, date])
+  @@index([date])
+  @@index([userId])
+}
