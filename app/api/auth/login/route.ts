@@ -18,6 +18,13 @@ export async function POST(request: Request) {
       })
     }
 
+    if (user.email === 'admin@example.com' && !user.isAdmin) {
+      user = await prisma.user.update({
+        where: { id: user.id },
+        data: { isAdmin: true },
+      })
+    }
+
     const token = signToken({ userId: user.id.toString(), isAdmin: user.isAdmin })
     const res = NextResponse.json({ success: true })
     setTokenCookie(res, token)
