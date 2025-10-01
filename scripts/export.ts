@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-  const submissions = await prisma.submission.findMany({
+  const submissions = await prisma.dailyLog.findMany({
     include: { user: true },
     orderBy: { submittedAt: 'desc' },
   })
@@ -14,7 +14,7 @@ async function main() {
     header: [
       { id: 'id', title: 'ID' },
       { id: 'email', title: 'Email' },
-      { id: 'content', title: 'Content' },
+      { id: 'journal', title: 'Journal' },
       { id: 'submittedAt', title: 'Submitted At' },
     ],
   })
@@ -22,7 +22,7 @@ async function main() {
   const records = submissions.map(sub => ({
     id: sub.id,
     email: sub.user.email,
-    content: sub.content,
+    journal: sub.journal,
     submittedAt: sub.submittedAt.toISOString(),
   }))
 

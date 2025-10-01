@@ -1,9 +1,9 @@
-import LRU from 'lru-cache'
+import { LRUCache } from 'lru-cache'
 
 const rateLimitWindowMs = 60 * 1000 // 1 minute
 const maxRequests = 10
 
-const cache = new LRU<string, { count: number; lastRequest: number }>({
+const cache = new LRUCache<string, { count: number; lastRequest: number }>({
   max: 5000,
   ttl: rateLimitWindowMs,
 })

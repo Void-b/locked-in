@@ -1,10 +1,17 @@
-# TODO: Add Monthly Calendar and Statistics to User Dashboard
+# TODO: Fix Render Deployment Warnings
 
-## Tasks
-- [x] Install Chart.js and react-chartjs-2 for statistics visualization
-- [x] Create Calendar component for monthly log display with navigation buttons
-- [x] Create Statistics component with pie/bar chart analyzing submission data
-- [x] Update app/page.tsx to fetch monthly logs and integrate calendar/stats components
-- [x] Add date range utilities for 3-month navigation
-- [x] Fix DailyLog type mismatch between components
-- [x] Test calendar navigation and statistics display
+## Completed
+- [x] Added engines field to package.json for Node >=18.18.0 and npm >=9.0.0
+- [x] Updated Next.js to ^14.2.15
+- [x] Updated eslint-config-next to ^14.2.15
+- [x] Deleted node_modules and package-lock.json locally
+- [x] Ran npm install to reinstall dependencies with updated versions
+- [x] Fixed TypeScript errors in lib/rateLimit.ts and scripts/export.ts
+- [x] Removed invalid experimental.appDir from next.config.js
+- [x] Tested build locally with npm run build - build succeeds without warnings or errors
+
+## Pending
+- [ ] Commit the changes to git
+- [ ] In Render dashboard, change the build command from "vercel build" to "npm run build"
+- [ ] Redeploy on Render
+- [ ] Verify that the warnings are gone and build succeeds
