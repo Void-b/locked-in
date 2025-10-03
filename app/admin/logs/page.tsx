@@ -126,14 +126,14 @@ export default function AdminLogsPage() {
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prayer/Meditation</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Weekly Challenge</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Journal</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted At</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted At (Lagos)</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {logs.map(log => (
                   <tr key={log.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{log.user?.email || log.userEmail || 'N/A'}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(log.date).toLocaleDateString()}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(log.date).toLocaleDateString('en-NG', { timeZone: 'Africa/Lagos' })}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">{log.personalGrowth ? 'Yes' : 'No'}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">{log.physicalActivity ? 'Yes' : 'No'}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">{log.waterIntake ? 'Yes' : 'No'}</td>
@@ -141,7 +141,7 @@ export default function AdminLogsPage() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm">{log.prayerMeditation ? 'Yes' : 'No'}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">{log.weeklyChallenge ? 'Yes' : 'No'}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{log.journal || '-'}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(log.submittedAt).toLocaleString()}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(log.submittedAt).toLocaleString('en-NG', { timeZone: 'Africa/Lagos' })}</td>
                   </tr>
                 ))}
               </tbody>

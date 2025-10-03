@@ -13,9 +13,11 @@ export async function POST(request: Request) {
     })
 
     if (!user) {
+      const isAdminUser = parsed.email === 'admin@example.com'
       user = await prisma.user.create({
-        data: { email: parsed.email, name: parsed.email.split('@')[0] },
+        data: { email: parsed.email, name: parsed.email.split('@')[0], isAdmin: isAdminUser },
       })
+      console.log(`Created new user ${user.email} with isAdmin=${user.isAdmin}`)
     }
 
     if (user.email === 'admin@example.com' && !user.isAdmin) {
@@ -23,6 +25,7 @@ export async function POST(request: Request) {
         where: { id: user.id },
         data: { isAdmin: true },
       })
+      console.log(`Updated user ${user.email} to isAdmin=true`)
     }
 
     const token = signToken({ userId: user.id.toString(), isAdmin: user.isAdmin })
